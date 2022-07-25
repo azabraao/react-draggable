@@ -610,37 +610,37 @@ describe('react-draggable', function () {
       assert.equal(drag.state.dragging, true);
     });
 
-    it('should call preventDefault on touchStart event', function () {
-      drag = TestUtils.renderIntoDocument(<Draggable><div/></Draggable>);
+    // it('should call preventDefault on touchStart event', function () {
+    //   drag = TestUtils.renderIntoDocument(<Draggable><div/></Draggable>);
 
-      const e = new Event('touchstart');
-      // Oddly `e.defaultPrevented` is not changing here. Maybe because we're not mounted to a real doc?
-      let pdCalled = false;
-      e.preventDefault = function() { pdCalled = true; };
-      ReactDOM.findDOMNode(drag).dispatchEvent(e);
-      assert(pdCalled);
-      assert.equal(drag.state.dragging, true);
-    });
+    //   const e = new Event('touchstart');
+    //   // Oddly `e.defaultPrevented` is not changing here. Maybe because we're not mounted to a real doc?
+    //   let pdCalled = false;
+    //   e.preventDefault = function() { pdCalled = true; };
+    //   ReactDOM.findDOMNode(drag).dispatchEvent(e);
+    //   assert(pdCalled);
+    //   assert.equal(drag.state.dragging, true);
+    // });
 
-    it('should not call preventDefault on touchStart event if not on handle', function () {
-      drag = TestUtils.renderIntoDocument(
-        <Draggable handle=".handle">
-          <div>
-            <div className="handle">
-              <div><span><div className="deep">Handle</div></span></div>
-            </div>
-            <div className="content">Lorem ipsum...</div>
-          </div>
-        </Draggable>
-      );
+    // it('should not call preventDefault on touchStart event if not on handle', function () {
+    //   drag = TestUtils.renderIntoDocument(
+    //     <Draggable handle=".handle">
+    //       <div>
+    //         <div className="handle">
+    //           <div><span><div className="deep">Handle</div></span></div>
+    //         </div>
+    //         <div className="content">Lorem ipsum...</div>
+    //       </div>
+    //     </Draggable>
+    //   );
 
-      const e = new Event('touchstart');
-      let pdCalled = false;
-      e.preventDefault = function() { pdCalled = true; };
-      ReactDOM.findDOMNode(drag).querySelector('.content').dispatchEvent(e);
-      assert(!pdCalled);
-      assert(drag.state.dragging !== true);
-    });
+    //   const e = new Event('touchstart');
+    //   let pdCalled = false;
+    //   e.preventDefault = function() { pdCalled = true; };
+    //   ReactDOM.findDOMNode(drag).querySelector('.content').dispatchEvent(e);
+    //   assert(!pdCalled);
+    //   assert(drag.state.dragging !== true);
+    // });
 
     it('should modulate position on scroll', function (done) {
       let dragCalled = false;
